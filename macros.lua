@@ -2,34 +2,36 @@ require "keybow"
 
 -- Key mappings --
 
+local meta = {}
+
 function setup()
     keybow.auto_lights(false)
     keybow.clear_lights()
 end
 
-
-local meta = {}
-
-local function newColor(r,g,b)
-    local view = {r = r ,g = g, b = b}
-    setmetatable(view,meta)
+function NewColor(r, g, b)
+    local view = {
+        r = r,
+        g = g,
+        b = b
+    }
+    setmetatable(view, meta)
     return view
 end
 
-local blue =  newColor(125,250,98)
-local green = newColor{55,219,108}
-local red = newColor{217,59,85}
-local yellow = newColor{250,205,65}
+local blue = NewColor(125, 250, 98)
+local green = NewColor {55, 219, 108}
+local red = NewColor {217, 59, 85}
+local yellow = NewColor {250, 205, 65}
 
-local colorCollection = {blue,green,red,yellow}
+local colorCollection = {blue, green, red, yellow}
 
-local colorIndex
-
+local colorIndex = 0
 
 local function setColor(color)
     -- 0 -> 11 for each key index on the 12-key keybow
     for i = 0, 11, 1 do
-        keybow.set_pixel(i,color.r,color.g,color.b)
+        keybow.set_pixel(i, color.r, color.g, color.b)
     end
 end
 
